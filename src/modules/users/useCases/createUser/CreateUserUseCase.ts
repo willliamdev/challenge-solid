@@ -13,11 +13,12 @@ class CreateUserUseCase {
   }
 
   execute({ email, name }: IRequest): User {
-    const emailIsAlreadyBeingUsed = this.usersRepository.findByEmail(email);
+    const emailIsAlreadyTaken = this.usersRepository.findByEmail(email);
 
-    if (emailIsAlreadyBeingUsed) {
+    if (emailIsAlreadyTaken) {
       throw new Error("Email is already being used");
     }
+
     const user = this.usersRepository.create({ email, name });
 
     return user;
