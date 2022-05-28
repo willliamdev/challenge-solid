@@ -7,10 +7,7 @@ interface IRequest {
 }
 
 class CreateUserUseCase {
-  private usersRepository: IUsersRepository;
-  constructor(usersRepository: IUsersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  constructor(private usersRepository: IUsersRepository) { }
 
   execute({ email, name }: IRequest): User {
     const emailIsAlreadyTaken = this.usersRepository.findByEmail(email);
